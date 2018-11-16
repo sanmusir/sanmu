@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show','create','store','sendEmailConfirmationTo','confirmEmail']]);
     }
 
     //注册页面
