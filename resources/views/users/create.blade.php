@@ -8,7 +8,7 @@
                 <h5>注册</h5>
             </div>
             <div class="panel-body">
-                @include('errors._errors')
+                @include('mess._errors')
                 <form method="POST" action="{{ route('users.store') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -32,18 +32,12 @@
                     </div>
 
                     <div class="form-group {{ $errors->has('captcha') ? ' has-error' : '' }}">
-                        <label for="captcha" class=" control-label">验证码</label>
+                        <label for="captcha" class=" control-label">验证码：</label>
 
                         <div >
                             <input id="captcha" class="form-control" name="captcha" >
 
                             <img class="thumbnail captcha" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码">
-
-                            @if ($errors->has('captcha'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('captcha') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
 

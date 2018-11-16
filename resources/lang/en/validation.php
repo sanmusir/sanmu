@@ -106,7 +106,7 @@ return [
         ],
 
         'captcha'              => [
-            'required' => '验证码不能为空',
+            'required' => '验证码 不能为空',
             'captcha'  => '请输入正确的验证码',
         ],
     ],

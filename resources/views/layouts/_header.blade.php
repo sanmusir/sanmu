@@ -26,7 +26,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="{{ route('signup') }}">登录</a></li>
+                    <li><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('signup') }}">注册</a></li>
                 @else
                     <li class="dropdown">
@@ -47,6 +47,7 @@
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
                                 </form>
                             </li>
                         </ul>
