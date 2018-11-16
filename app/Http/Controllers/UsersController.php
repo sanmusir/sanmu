@@ -11,6 +11,11 @@ use Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     //注册页面
     public function create()
     {
@@ -76,12 +81,14 @@ class UsersController extends Controller
     //用户编辑
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     //更新资料
     public function update(UserRequest $request, User $user,ImageUploadHandler $uploader)
     {
+        $this->authorize('update', $user);
         $data = $request->all();
 
         if($request->avatar){
