@@ -15,6 +15,7 @@
         @include('layouts._header')
 
         <div class="container">
+            @include('errors._messages')
             @yield('content')
         </div>
 
