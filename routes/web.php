@@ -5,6 +5,9 @@ Route::get('signup', 'UsersController@create')->name('signup');
 //用户相关
 Route::get('/users/create', 'UsersController@create')->name('users.create');
 Route::post('/users', 'UsersController@store')->name('users.store');
+Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 //会话相关
 Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');

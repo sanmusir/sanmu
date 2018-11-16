@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Handlers\ImageUploadHandler;
 use App\Models\User;
 use Mail;
 use Auth;
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', [
-            'except' => ['show', 'create', 'store', 'index', 'confirmEmail']
-        ]);
-    }
     //注册页面
     public function create()
     {
@@ -69,5 +65,33 @@ class UsersController extends Controller
         Auth::login($user);
         session()->flash('success', '恭喜你，激活成功！');
         return redirect()->route('root', [$user]);
+    }
+
+    //用户首页
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
+
+    //用户编辑
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    //更新资料
+    public function update(UserRequest $request, User $user,ImageUploadHandler $uploader)
+    {
+        $data = $request->all();
+
+        if($request->avatar){
+            $result = $uploader->save($request->avatar, 'avatars', $user->id, 362);
+            if ($result) {
+                $data['avatar'] = $result['path'];
+            }
+        }
+
+        $user->update($data);
+        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
     }
 }
