@@ -11,6 +11,7 @@ html {
 
 body {
   font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+  margin-bottom: 65px;
 }
 
 //导航条
@@ -34,7 +35,7 @@ body {
   bottom: 0;
   width: 100% ;
   /* Set the fixed height of the footer here */
-  height: 70px;
+  height: 65px;
   background-color: #363636;
   p {
     color: #c1c1c1;
@@ -56,6 +57,52 @@ body {
   .user-info {
     .thumbnail {
       margin-bottom: 0px;
+    }
+  }
+}
+
+/* Topic Index Page */
+.topics-index-page {
+  .topic-list {
+    .nav > li > a {
+      position: relative;
+      display: block;
+      padding: 5px 14px;
+      font-size: 0.9em;
+    }
+    a {
+      color: #444444;
+    }
+    .meta {
+      font-size:0.9em;
+      color:#b3b3b3;
+
+      .category_1 a{
+        color:#5CACEE;
+      }
+      .category_2 a{
+        color:#5bc0de;
+      }
+      .category_3 a{
+        color:#CDAA7D;
+      }
+      .category_4 a{
+        color:#EE6363;
+      }
+      .user_name a{
+        color:#b3b3b3;
+      }
+    }
+
+
+    .badge {
+      background-color: #d8d8d8;
+    }
+    hr {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      border: 0;
+      border-top: 1px solid #dcebf5;
     }
   }
 }

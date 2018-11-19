@@ -14,10 +14,19 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
+    static $password ;
+    $password = bcrypt('123456');
+    $updated_at = $faker->dateTimeThisMonth();
+    $created_at = $faker->dateTimeThisMonth($updated_at);
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => $password,
+        'activated' => 1,
+        'avatar' => 'http://sanmu.test/uploads/images/avatars/201811/16/7_1542362938_caPNGK20w6.jpg',
+        'introduction' => $faker->sentence(),
         'remember_token' => str_random(10),
+        'created_at' => $created_at,
+        'updated_at' => $updated_at,
     ];
 });
