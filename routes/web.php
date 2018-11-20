@@ -22,3 +22,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 //话题分类
 Route::resource('categories','CategoriesController',['only'=>['show']]);
+//收藏相关
+Route::post('favorite/{topic}', 'TopicsController@favoritePost');
+Route::post('unfavorite/{topic}', 'TopicsController@unFavoritePost');
+Route::get('my_favorites', 'UsersController@myFavorites');

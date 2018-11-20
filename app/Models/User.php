@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Topic::class, 'favorites', 'user_id', 'topic_id')->withTimeStamps();
+    }
 }
