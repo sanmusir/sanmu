@@ -1,5 +1,5 @@
 <?php
-Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'TopicsController@index')->name('root');
 //注册页面
 Route::get('signup', 'UsersController@create')->name('signup');
 //用户相关
