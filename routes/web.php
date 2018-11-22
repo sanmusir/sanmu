@@ -26,3 +26,5 @@ Route::resource('categories','CategoriesController',['only'=>['show']]);
 Route::post('favorite/{topic}', 'TopicsController@favoritePost');
 Route::post('unfavorite/{topic}', 'TopicsController@unFavoritePost');
 Route::get('my_favorites', 'UsersController@myFavorites');
+//图片上传
+Route::post('upload_image','TopicsController@uploadImage')->name('topics.upload_image');
