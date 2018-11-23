@@ -8,6 +8,7 @@ use App\Models\Category;
 
 class CategoriesController extends Controller
 {
+    //分类话题展示
     public function show(Category $category, Request $request,Topic $topic)
     {
         $topics = $topic->withOrder($request->order)

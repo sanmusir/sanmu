@@ -36,11 +36,13 @@ class User extends Authenticatable
         });
     }
 
+    //关联话题
     public function topics()
     {
         return $this->hasMany(Topic::class);
     }
 
+    //关联收藏
     public function favorites()
     {
         return $this->belongsToMany(Topic::class, 'favorites', 'user_id', 'topic_id')->withTimeStamps();

@@ -18,24 +18,28 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
+    //话题首页
 	public function index(Request $request, Topic $topic)
 	{
         $topics = $topic->withOrder($request->order)->paginate();
 		return view('topics.index', compact('topics'));
 	}
 
+	//展示话题
     public function show(Topic $topic)
     {
         $favorite_ids = Favorite::where('user_id',Auth::id())->pluck('topic_id')->toArray();
         return view('topics.show', compact('topic','favorite_ids'));
     }
 
+    //创建话题
 	public function create(Topic $topic,Category $category)
 	{
 	    $categories = $category->all();
 		return view('topics.create_and_edit', compact('topic','categories'));
 	}
 
+	//保存话题
 	public function store(TopicRequest $request,Topic $topic)
 	{
 	    $topic->fill($request->all());
@@ -45,12 +49,14 @@ class TopicsController extends Controller
 		return redirect()->route('topics.show', $topic->id)->with('message', '发布话题成功！');
 	}
 
+	//编辑话题
 	public function edit(Topic $topic)
 	{
         $this->authorize('update', $topic);
 		return view('topics.create_and_edit', compact('topic'));
 	}
 
+	//更新话题
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
@@ -59,6 +65,7 @@ class TopicsController extends Controller
 		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
 	}
 
+	//删除话题
 	public function destroy(Topic $topic)
 	{
 		$this->authorize('destroy', $topic);
@@ -67,6 +74,7 @@ class TopicsController extends Controller
 		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
 
+	//上传图片
 	public function uploadImage(Request $request,ImageUploadHandler $uploader)
     {
         //初始化返回数据,默认是失败
@@ -92,17 +100,14 @@ class TopicsController extends Controller
     public function favoritePost(Topic $topic)
     {
         Auth::user()->favorites()->attach($topic->id);
-
-        return back();
+        return ;
     }
 
     //取消收藏
     public function unFavoritePost(Topic $topic)
     {
         Auth::user()->favorites()->detach($topic->id);
-
-        return back();
+        return ;
     }
-
 
 }

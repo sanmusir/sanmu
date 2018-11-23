@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\Favorite;
 use Auth;
 
 class Topic extends Model
@@ -20,6 +19,7 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    //自建排序语句
     public function scopeWithOrder($query, $order)
     {
         switch ($order) {
@@ -36,24 +36,28 @@ class Topic extends Model
         return $query->with('user', 'category');
     }
 
+    //按最后回复时间排序
     public function scopeRecentReplied($query)
     {
         // 按照更新时间排序
         return $query->orderBy('updated_at', 'desc');
     }
 
+    //按创建时间排序
     public function scopeRecent($query)
     {
         // 按照创建时间排序
         return $query->orderBy('created_at', 'desc');
     }
 
+    //按热度排序
     public function scopeHot($query)
     {
         // 按照热度排序
         return $query->orderBy('view_count', 'desc');
     }
 
+    //检查是否已收藏话题
     public function favorited()
     {
         return (bool) Favorite::where('user_id', Auth::id())

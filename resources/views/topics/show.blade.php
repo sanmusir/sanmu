@@ -23,8 +23,8 @@
                         <span class="glyphicon glyphicon-comment" ></span>
                         评论数
                         {{ $topic->reply_count }}
-                        ⋅
                         @if (Auth::check())
+                            ⋅
                             <favorite
                                     :topic={{ $topic->id }}
                                             :favorited={{ $topic->favorited() ? 'true' : 'false' }}

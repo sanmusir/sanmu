@@ -67,7 +67,7 @@
                                     退出登录
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </li>

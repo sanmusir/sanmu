@@ -12,7 +12,7 @@ class SessionsController extends Controller
     {
         return view('sessions.create');
     }
-
+    //保存登陆信息
     public function store(Request $request)
     {
         $credentials = $this->validate($request, [

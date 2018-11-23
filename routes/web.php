@@ -11,7 +11,7 @@ Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 //会话相关
 Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
-Route::delete('logout', 'SessionsController@destroy')->name('logout');
+Route::post('logout', 'SessionsController@destroy')->name('logout');
 //邮箱认证
 Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
 //密码重设
