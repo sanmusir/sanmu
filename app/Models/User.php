@@ -45,4 +45,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Topic::class, 'favorites', 'user_id', 'topic_id')->withTimeStamps();
     }
+
 }

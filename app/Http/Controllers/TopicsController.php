@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
+use App\Models\Favorite;
 use Auth;
 use App\Handlers\ImageUploadHandler;
 
@@ -25,7 +26,8 @@ class TopicsController extends Controller
 
     public function show(Topic $topic)
     {
-        return view('topics.show', compact('topic'));
+        $favorite_ids = Favorite::where('user_id',Auth::id())->pluck('topic_id')->toArray();
+        return view('topics.show', compact('topic','favorite_ids'));
     }
 
 	public function create(Topic $topic,Category $category)
@@ -54,7 +56,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
 	}
 
 	public function destroy(Topic $topic)
@@ -62,7 +64,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
 
 	public function uploadImage(Request $request,ImageUploadHandler $uploader)
@@ -85,4 +87,22 @@ class TopicsController extends Controller
 
         return $data;
     }
+
+    //收藏文章
+    public function favoritePost(Topic $topic)
+    {
+        Auth::user()->favorites()->attach($topic->id);
+
+        return back();
+    }
+
+    //取消收藏
+    public function unFavoritePost(Topic $topic)
+    {
+        Auth::user()->favorites()->detach($topic->id);
+
+        return back();
+    }
+
+
 }

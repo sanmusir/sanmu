@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\Favorite;
+use Auth;
 
 class Topic extends Model
 {
@@ -50,6 +52,13 @@ class Topic extends Model
     {
         // 按照热度排序
         return $query->orderBy('view_count', 'desc');
+    }
+
+    public function favorited()
+    {
+        return (bool) Favorite::where('user_id', Auth::id())
+            ->where('Topic_id', $this->id)
+            ->first();
     }
 
 }
