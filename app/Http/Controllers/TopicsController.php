@@ -46,7 +46,7 @@ class TopicsController extends Controller
         $topic->user_id = Auth::id();
         $topic->save();
 
-		return redirect()->route('topics.show', $topic->id)->with('message', '发布话题成功！');
+		return redirect()->route('topics.show', $topic->id)->with('success', '发布话题成功！');
 	}
 
 	//编辑话题
@@ -63,7 +63,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
+		return redirect()->route('topics.show', $topic->id)->with('success', '更新成功！');
 	}
 
 	//删除话题
@@ -72,7 +72,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('users.show',Auth::id())->with('message', '删除成功！');
+		return redirect()->route('users.show',Auth::id())->with('danger', '删除成功！');
 	}
 
 	//上传图片
