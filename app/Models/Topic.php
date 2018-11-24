@@ -65,4 +65,10 @@ class Topic extends Model
             ->first();
     }
 
+    //关联回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
 }

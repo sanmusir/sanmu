@@ -48,4 +48,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Topic::class, 'favorites', 'user_id', 'topic_id')->withTimeStamps();
     }
 
+    //关联回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }

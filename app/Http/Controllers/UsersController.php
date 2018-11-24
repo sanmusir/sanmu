@@ -39,27 +39,12 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        //$this->sendEmailConfirmationTo($user);
         $this->dispatch(new SendRegisterUserEmail($user));
 
         session()->flash('success', '验证邮件已发送到你的注册邮箱上，请注意查收。');
 
         return redirect()->route('root');
     }
-
-//    //发送认证邮件
-//    protected function sendEmailConfirmationTo($user)
-//    {
-//        $view = 'emails.confirm';
-//        $data = compact('user');
-//        $to = $user->email;
-//        $subject = "感谢注册 SanMu 应用！请确认你的邮箱。";
-//
-//        Mail::send($view, $data, function ($message) use ($to, $subject) {
-//            $message->to($to)->subject($subject);
-//        });
-//    }
-
     //邮箱确认
     public function confirmEmail($token)
     {

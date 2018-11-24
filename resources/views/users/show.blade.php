@@ -50,7 +50,7 @@
                         </li>
                     </ul>
                     @if (if_query('tab', 'replies'))
-
+                        @include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(8)])
                     @elseif(if_query('tab', 'favorites'))
                         @include('users._topics', ['topics' => $user->favorites()->recent()->paginate(8)])
                     @else

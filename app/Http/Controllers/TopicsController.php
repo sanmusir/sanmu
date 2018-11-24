@@ -72,7 +72,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('users.show',Auth::id())->with('danger', '删除成功！');
+		return redirect()->route('users.show',Auth::id())->with('success', '删除成功！');
 	}
 
 	//上传图片

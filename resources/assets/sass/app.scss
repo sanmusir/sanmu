@@ -94,6 +94,13 @@ body {
   .pagination {
     margin: 12px 0;
   }
+  .meta {
+    font-size: .9em;
+    color: #b3b3b3;
+  }
+  .reply-content {
+    margin: 6px 0;
+  }
 }
 
 /* Topic Index Page */
@@ -113,7 +120,7 @@ body {
       color:#b3b3b3;
 
       .category_1 a{
-        color:#5CACEE;
+        color:#8FBC8F;
       }
       .category_2 a{
         color:#5bc0de;
@@ -154,5 +161,21 @@ body {
       font-size: 28px;
       line-height: 38px;
     }
+  }
+}
+
+.topic-reply {
+  hr {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .meta {
+    font-size: .9em;
+    color: #b3b3b3;
   }
 }
