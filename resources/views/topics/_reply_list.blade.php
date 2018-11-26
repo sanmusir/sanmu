@@ -1,4 +1,4 @@
-<div class="reply-list">
+<div class=" reply-list">
     @foreach ($replies as $index => $reply)
         <div class=" media"  name="reply{{ $reply->id }}" id="reply{{ $reply->id }}">
             <div class="avatar pull-left">
