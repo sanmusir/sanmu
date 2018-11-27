@@ -23,6 +23,7 @@ class TopicObserver
     {
         //删除话题的时候，删除相关收藏记录
         Favorite::where('topic_id',$topic->id)->delete();
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
     }
 
 }
