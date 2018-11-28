@@ -22,5 +22,13 @@ class UsersTableSeeder extends Seeder
 
         User::insert($user_array);
 
+        //将1号赋予站长的角色
+        $user = User::find(1);
+        $user->assignRole('Founder');
+
+        //将2号赋予管理员角色
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
+
     }
 }
