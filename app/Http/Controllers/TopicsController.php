@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\Favorite;
 use Auth;
 use App\Handlers\ImageUploadHandler;
+use App\Models\User;
+use App\Models\Link;
 
 class TopicsController extends Controller
 {
@@ -19,11 +21,14 @@ class TopicsController extends Controller
     }
 
     //话题首页
-	public function index(Request $request, Topic $topic)
-	{
-        $topics = $topic->withOrder($request->order)->paginate();
-		return view('topics.index', compact('topics'));
-	}
+    public function index(Request $request, Topic $topic, User $user, Link $link)
+    {
+        $topics = $topic->withOrder($request->order)->paginate(20);
+        $active_users = $user->getActiveUsers();
+        $links = $link->getAllCached();
+
+        return view('topics.index', compact('topics', 'active_users', 'links'));
+    }
 
 	//展示话题
     public function show(Topic $topic)

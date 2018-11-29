@@ -21,8 +21,9 @@ class TopicObserver
 
     public function deleted(Topic $topic)
     {
-        //删除话题的时候，删除相关收藏记录
-        Favorite::where('topic_id',$topic->id)->delete();
+        //删除收藏
+        \DB::table('favorites')->where('topic_id', $topic->id)->delete();
+        //删除回复
         \DB::table('replies')->where('topic_id', $topic->id)->delete();
     }
 
